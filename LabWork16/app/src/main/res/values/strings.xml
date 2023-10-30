@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">LabWork16</string>
+
+    <string name="find">Найти</string>
+    <string name="ok">ОК</string>
+    <string name="enter">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="search_en">Search</string>
+    <string name="ok_en">ОК</string>
+    <string name="enter_en">Enter</string>
+    <string name="register_en">Register</string>
+
+    <string name="username_year">%1$s, %2$d</string>
+
+    <string-array name="seasons">
+        <item>Весна</item>
+        <item>Лето</item>
+        <item>Осень</item>
+        <item>Зима</item>
+    </string-array>
+
+    <plurals name="hours">
+        <item quantity="one">%d час</item>
+        <item quantity="few">%d часа</item>
+        <item quantity="many">%d часов</item>
+        <item quantity="other">%d часов</item>
+    </plurals>
+
+    <plurals name="minutes">
+        <item quantity="one">%d минута</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="many">%d минут</item>
+        <item quantity="other">%d минут</item>
+    </plurals>
+</resources>
