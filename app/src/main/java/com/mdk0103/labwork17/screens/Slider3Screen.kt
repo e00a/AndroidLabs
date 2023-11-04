@@ -1,5 +1,6 @@
 package com.mdk0103.labwork17.screens
 
+import androidx.annotation.FloatRange
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.RangeSlider
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -22,49 +25,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Slider3Screen() {
-    val minPrice = 0
-    val maxPrice = 10000
-    var selectedMinPrice by remember { mutableStateOf(minPrice) }
-    var selectedMaxPrice by remember { mutableStateOf(maxPrice) }
+    val minPrice = 0f
+    val maxPrice = 10000f
+    var sliderPosition by remember { mutableStateOf(minPrice..maxPrice) }
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(32.dp),
+            .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Выберите диапазон цены товара",
-            fontSize = 16.sp
         )
-        Slider(
-            value = selectedMinPrice.toFloat(),
-            onValueChange = { newValue ->
-                selectedMinPrice = newValue.toInt()
-            },
-            valueRange = minPrice.toFloat()..maxPrice.toFloat(),
-            steps = (maxPrice - minPrice),
-            modifier = Modifier.fillMaxWidth()
+        RangeSlider(
+            value = sliderPosition,
+            onValueChange = { range -> sliderPosition = range },
+            valueRange = minPrice..maxPrice,
+            steps = (maxPrice).toInt() - 1,
         )
-        Slider(
-            value = selectedMaxPrice.toFloat(),
-            onValueChange = { newValue ->
-                selectedMaxPrice = newValue.toInt()
-            },
-            valueRange = minPrice.toFloat()..maxPrice.toFloat(),
-            steps = (maxPrice - minPrice),
-            modifier = Modifier.fillMaxWidth(),
-
-        )
-
-        Text(
-            text = "$selectedMinPrice - $selectedMaxPrice",
-            fontSize = 20.sp
-        )
-
+        Text(text = sliderPosition.toString())
     }
 }
 
