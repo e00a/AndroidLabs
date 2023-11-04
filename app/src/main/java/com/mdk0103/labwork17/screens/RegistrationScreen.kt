@@ -2,10 +2,8 @@ package com.mdk0103.labwork17.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,60 +11,58 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen(modifier: Modifier = Modifier) {
-    var username by remember { mutableStateOf("") }
+    var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    var isAgreed by remember { mutableStateOf(false) }
+    var isAgreeChecked by remember { mutableStateOf(false) }
 
-
+    val languages = listOf("Russian","English", "Spanish", "French")
 
     Column(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = "Registration", modifier = Modifier.padding(bottom = 16.dp))
-
         TextField(
-            value = username,
-            onValueChange = { username = it },
-            label = { Text(text = "Username") },
+            value = login,
+            onValueChange = { login = it },
+            label = { Text("Login") },
             singleLine = true,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
         )
 
         TextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "Password") },
+            label = { Text("Password") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
             singleLine = true,
-            modifier = Modifier.padding(bottom = 16.dp)
         )
 
         TextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
-            label = { Text(text = "Confirm Password") },
+            label = { Text("Confirm Password") },
             singleLine = true,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
         )
 
         Row(
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Checkbox(
-                checked = isAgreed,
-                onCheckedChange = { isAgreed = it }
+                checked = isAgreeChecked,
+                onCheckedChange = { isAgreeChecked = it }
             )
             Text(
                 text = "Я согласен на обработку персональных данных",
@@ -76,44 +72,35 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Button(
             onClick = {  },
-            enabled = isAgreed,
-            modifier = Modifier.padding(bottom = 16.dp)
+            enabled = isAgreeChecked,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Регистрация")
+            Text("Register")
         }
 
-        Text(
-            text = "Select your languages:",
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
-//        val languages = listOf(
-//            LanguageItem("English"),
-//            LanguageItem("Spanish"),
-//            LanguageItem("French"),
-//            LanguageItem("German"),
-//            LanguageItem("Russian")
-//        )
-//
-//        languages.forEach { language ->
-//            Row(
-//                modifier = Modifier.toggleable(
-//                    value = language.isSelected,
-//                    onValueChange = { language.isSelected = it }
-//                )
-//            ) {
-//                Checkbox(
-//                    checked = language.isSelected,
-//                    onCheckedChange = { language.isSelected = it },
-//                    modifier = Modifier.padding(end = 8.dp)
-//                )
-//                Text(text = language.language)
-//            }
-//        }
+        languages.forEach { language ->
+            LanguageItem(language = language)
+        }
     }
 }
 
-
+@Composable
+fun LanguageItem(language: String) {
+    var isChecked by remember { mutableStateOf(false) }
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Checkbox(
+            checked = isChecked,
+            onCheckedChange = {isChecked = !isChecked}
+        )
+        Text(
+            text = language,
+            modifier = Modifier.padding(start = 8.dp)
+        )
+    }
+}
 
 @Preview(showBackground = true)
 @Composable

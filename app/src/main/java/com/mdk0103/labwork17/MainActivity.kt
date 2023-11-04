@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
 fun Menu(modifier: Modifier = Modifier) {
     Row(modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally){
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Button(
                 onClick = { current = "AuthorizationScreen" },
                 modifier = Modifier
@@ -103,6 +103,7 @@ fun Menu(modifier: Modifier = Modifier) {
                     modifier = Modifier
                 )
             }
+
             Button(
                 onClick = { current = "PasswordScreen" },
                 modifier = Modifier
@@ -110,6 +111,18 @@ fun Menu(modifier: Modifier = Modifier) {
             {
                 Text(
                     text = "Task4",
+                    modifier = Modifier
+                )
+            }
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Button(
+                onClick = { current = "RegistrationScreen" },
+                modifier = Modifier
+            )
+            {
+                Text(
+                    text = "Task5",
                     modifier = Modifier
                 )
             }
@@ -123,8 +136,7 @@ fun Menu(modifier: Modifier = Modifier) {
                     modifier = Modifier
                 )
             }
-        }
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
             Button(
                 onClick = { current = "LanguageScreen" },
                 modifier = Modifier
@@ -145,6 +157,8 @@ fun Menu(modifier: Modifier = Modifier) {
                     modifier = Modifier
                 )
             }
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Button(
                 onClick = { current = "AlarmScreen" },
                 modifier = Modifier
@@ -155,7 +169,6 @@ fun Menu(modifier: Modifier = Modifier) {
                     modifier = Modifier
                 )
             }
-
             Button(
                 onClick = { current = "Slider1Screen" },
                 modifier = Modifier
